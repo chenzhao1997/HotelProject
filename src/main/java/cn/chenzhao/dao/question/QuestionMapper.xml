@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chenzhao.dao.question.QuestionMapper">
+    <update id="updateQuestion" parameterType="question">
+        update question
+        set answerCount = #{answerCount},lastModified=#{lastModified}
+        where queId=#{queId}
+    </update>
+
+    <select id="queryAll" resultType="question">
+        select * from question order by lastModified desc
+    </select>
+
+
+    <insert id="addQuestion"  parameterType="integer">
+        insert into question values (null,#{title},#{detailDesc},#{answerCount},#{lastModified})
+    </insert>
+    <select id="detailQuestion" resultType="question">
+        select * from question where queId = #{queId};
+    </select>
+</mapper>
